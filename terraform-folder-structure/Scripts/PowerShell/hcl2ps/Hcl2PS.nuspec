@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Hcl2PS</id>
+    <version>0.5.0</version>
+    <authors>Mert Senel</authors>
+    <owners>Mert Senel</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/MertSenel/Hcl2PS/blob/main/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/MertSenel/Hcl2PS</projectUrl>
+    <description>PowerShell Module to Wrap Hcl2Json CLI tool for Easy distribution of PowerShell cmdlets to Parse HCL Files
+    It can be used to Parse Terraform and other HCL format files into Powershell objects to be used in programmatical access in powershell scripts in DevOps use cases.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>c 2023 All rights reserved.</copyright>
+    <tags>PowerShell HCL Terraform PSModule PSIncludes_Function PSFunction_ConvertFrom-Hcl PSCommand_ConvertFrom-Hcl</tags>
+  </metadata>
+</package>

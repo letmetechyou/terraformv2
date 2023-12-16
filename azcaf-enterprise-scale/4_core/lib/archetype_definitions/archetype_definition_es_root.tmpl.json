@@ -1,0 +1,14 @@
+{
+  "es_root": {
+    "policy_assignments": [],
+    "policy_definitions": [
+      "Deny-Subnet-Without-Nsg"
+    ],
+    "policy_set_definitions": [],
+    "role_definitions": ["VirtualNetwork-Contributor"],
+    "archetype_config": {
+      "parameters": {},
+      "access_control": {}
+    }
+  }
+}

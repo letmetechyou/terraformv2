@@ -1,0 +1,3 @@
+variable "lz_vending" {
+  
+}

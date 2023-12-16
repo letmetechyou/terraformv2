@@ -1,0 +1,1 @@
+variable "storage_container_data" {}

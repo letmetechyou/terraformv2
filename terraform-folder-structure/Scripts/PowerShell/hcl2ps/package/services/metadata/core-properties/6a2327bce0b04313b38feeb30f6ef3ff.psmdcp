@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Mert Senel</dc:creator>
+  <dc:description>PowerShell Module to Wrap Hcl2Json CLI tool for Easy distribution of PowerShell cmdlets to Parse HCL Files
+    It can be used to Parse Terraform and other HCL format files into Powershell objects to be used in programmatical access in powershell scripts in DevOps use cases.</dc:description>
+  <dc:identifier>Hcl2PS</dc:identifier>
+  <version>0.5.0</version>
+  <keywords>PowerShell HCL Terraform PSModule PSIncludes_Function PSFunction_ConvertFrom-Hcl PSCommand_ConvertFrom-Hcl</keywords>
+  <lastModifiedBy>NuGet, Version=6.6.1.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35;Microsoft Windows NT 10.0.20348.0;.NET Framework 4.7.2</lastModifiedBy>
+</coreProperties>

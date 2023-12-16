@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" />
+  <Default Extension="psmdcp" ContentType="application/vnd.openxmlformats-package.core-properties+xml" />
+  <Default Extension="md" ContentType="application/octet" />
+  <Default Extension="psd1" ContentType="application/octet" />
+  <Default Extension="png" ContentType="application/octet" />
+  <Default Extension="psm1" ContentType="application/octet" />
+  <Default Extension="ps1" ContentType="application/octet" />
+  <Default Extension="txt" ContentType="application/octet" />
+  <Default Extension="yml" ContentType="application/octet" />
+  <Default Extension="sentinel" ContentType="application/octet" />
+  <Default Extension="example" ContentType="application/octet" />
+  <Default Extension="json" ContentType="application/octet" />
+  <Default Extension="tf" ContentType="application/octet" />
+  <Default Extension="hcl" ContentType="application/octet" />
+  <Default Extension="exe" ContentType="application/octet" />
+  <Default Extension="nuspec" ContentType="application/octet" />
+  <Override PartName="/.github/CODEOWNERS" ContentType="application/octet" />
+  <Override PartName="/bin/LICENSE" ContentType="application/octet" />
+  <Override PartName="/bin/0.6.0/hcl2json_darwin_amd64" ContentType="application/octet" />
+  <Override PartName="/bin/0.6.0/hcl2json_darwin_arm64" ContentType="application/octet" />
+  <Override PartName="/bin/0.6.0/hcl2json_linux_amd64" ContentType="application/octet" />
+  <Override PartName="/bin/0.6.0/hcl2json_linux_arm64" ContentType="application/octet" />
+</Types>

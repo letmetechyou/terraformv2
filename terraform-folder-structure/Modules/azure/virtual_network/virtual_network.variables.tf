@@ -1,0 +1,1 @@
+variable "virtual_network_data" {}

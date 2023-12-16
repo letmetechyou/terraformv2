@@ -1,0 +1,25 @@
+{
+    "name": "a10a426e-00f3-4e9b-95bf-e3abe0738b2b",
+    "type": "Microsoft.Authorization/roleDefinitions",
+    "apiVersion": "2022-04-01",
+    "properties": {
+        "roleName": "Vazcaf-enterprise-scale/4_core/lib/role_definitions/role_definition_es_virtual_network_contributor.tmpl.json",
+        "description": "This role allows for users to be able to read, write and delete virtual networks",
+        "type": "customRole",
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Network/virtualNetworks/write",
+                    "Microsoft.Network/virtualNetworks/delete"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ],
+        "assignableScopes": [
+            "${current_scope_resource_id}"
+        ]
+    }
+}

@@ -1,0 +1,1 @@
+variable data_protection_backup_vault_data {}

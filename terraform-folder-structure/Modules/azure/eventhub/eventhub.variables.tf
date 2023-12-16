@@ -1,0 +1,1 @@
+variable "eventhub_data" {}
