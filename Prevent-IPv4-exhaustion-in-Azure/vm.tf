@@ -4,7 +4,7 @@ resource "azurerm_windows_virtual_machine" "vm1" {
   location            = azurerm_resource_group.lz1.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  admin_password      = ""
   network_interface_ids = [
     azurerm_network_interface.nicvm1.id,
   ]
@@ -40,7 +40,7 @@ resource "azurerm_windows_virtual_machine" "vm2" {
   location            = azurerm_resource_group.lz1.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  admin_password      = ""
   network_interface_ids = [
     azurerm_network_interface.nicvm2.id,
   ]
@@ -65,7 +65,7 @@ resource "azurerm_network_interface" "nicvm2" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.lz2vm-subnet.id
+    subnet_id                     = azurerm_subnet.lz1nonroutablevm-subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -76,7 +76,7 @@ resource "azurerm_windows_virtual_machine" "vm3" {
   location            = azurerm_resource_group.lz2.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  admin_password      = ""
   network_interface_ids = [
     azurerm_network_interface.nicvm3.id,
   ]
@@ -101,7 +101,7 @@ resource "azurerm_network_interface" "nicvm3" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.lz1nonroutablevm-subnet.id
+    subnet_id                     = azurerm_subnet.lz2vm-subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -112,7 +112,7 @@ resource "azurerm_windows_virtual_machine" "vm4" {
   location            = azurerm_resource_group.lz2.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  admin_password      = ""
   network_interface_ids = [
     azurerm_network_interface.nicvm4.id,
   ]
@@ -149,7 +149,7 @@ resource "azurerm_windows_virtual_machine" "vm5" {
   location            = azurerm_resource_group.hub.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  admin_password      = ""
   network_interface_ids = [
     azurerm_network_interface.nicvm5.id,
   ]

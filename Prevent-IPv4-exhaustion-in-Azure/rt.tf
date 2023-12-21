@@ -1,3 +1,5 @@
+
+
 resource "azurerm_route_table" "lz1rt1" {
   name                = "rt-1"
   location            = azurerm_resource_group.lz1.location
@@ -6,7 +8,7 @@ resource "azurerm_route_table" "lz1rt1" {
   route {
     name                   = "route-to-hub"
     address_prefix         = "0.0.0.0/0"
-    next_hop_in_ip_address = azurerm_firewall.lz1.ip_configuration[0].private_ip_address
+    next_hop_in_ip_address = azurerm_firewall.main.ip_configuration[0].private_ip_address
     next_hop_type          = "VirtualAppliance"
   }
 }
@@ -30,7 +32,7 @@ resource "azurerm_route_table" "lz1rt2" {
 }
 
 resource "azurerm_subnet_route_table_association" "lz1rt2" {
-  subnet_id      = azurerm_subnet.lz2-azurefirewallsubnet.id
+  subnet_id      = azurerm_subnet.lz1-azurefirewallsubnet.id
   route_table_id = azurerm_route_table.lz1rt2.id
 }
 
@@ -43,7 +45,7 @@ resource "azurerm_route_table" "lz2rt1" {
   route {
     name                   = "route-to-hub"
     address_prefix         = "0.0.0.0/0"
-    next_hop_in_ip_address = azurerm_firewall.lz2.ip_configuration[0].private_ip_address
+    next_hop_in_ip_address = azurerm_firewall.main.ip_configuration[0].private_ip_address
     next_hop_type          = "VirtualAppliance"
   }
 }
@@ -69,4 +71,44 @@ resource "azurerm_subnet_route_table_association" "lz2rt1" {
 resource "azurerm_subnet_route_table_association" "lz2rt2" {
   subnet_id      = azurerm_subnet.lz2-azurefirewallsubnet.id
   route_table_id = azurerm_route_table.lz2rt2.id
+}
+
+
+
+resource "azurerm_route_table" "lz1nonroutert1" {
+  name                = "rt-5"
+  location            = azurerm_resource_group.lz1.location
+  resource_group_name = azurerm_resource_group.lz1.name
+
+  route {
+    name                   = "route-to-hub"
+    address_prefix         = "0.0.0.0/0"
+    next_hop_in_ip_address = azurerm_firewall.lz1.ip_configuration[0].private_ip_address
+    next_hop_type          = "VirtualAppliance"
+  }
+}
+
+resource "azurerm_subnet_route_table_association" "lz1nonroutert1" {
+  subnet_id      = azurerm_subnet.lz1nonroutablevm-subnet.id
+  route_table_id = azurerm_route_table.lz1nonroutert1.id
+}
+
+
+
+resource "azurerm_route_table" "lz2nonroutert1" {
+  name                = "rt-6"
+  location            = azurerm_resource_group.lz2.location
+  resource_group_name = azurerm_resource_group.lz2.name
+
+  route {
+    name                   = "route-to-azfw"
+    address_prefix         = "0.0.0.0/0"
+    next_hop_in_ip_address = azurerm_firewall.lz2.ip_configuration[0].private_ip_address
+    next_hop_type          = "VirtualAppliance"
+  }
+}
+
+resource "azurerm_subnet_route_table_association" "lz2nonroutert1" {
+  subnet_id      = azurerm_subnet.lz2nonroutablevm-subnet.id
+  route_table_id = azurerm_route_table.lz2nonroutert1.id
 }

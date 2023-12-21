@@ -6,6 +6,7 @@ resource "azurerm_firewall" "main" {
   resource_group_name = azurerm_resource_group.hub.name
   sku_name            = "AZFW_VNet"
   sku_tier            = "Standard"
+  firewall_policy_id  = azurerm_firewall_policy.hub.id
 
   ip_configuration {
     name                 = "configuration"
@@ -15,7 +16,7 @@ resource "azurerm_firewall" "main" {
 }
 
 resource "azurerm_public_ip" "hubfwpip" {
-  name                = "lz1fwpip"
+  name                = "hubfwpip"
   resource_group_name = azurerm_resource_group.hub.name
   location            = azurerm_resource_group.hub.location
   sku                 = "Standard"
@@ -32,11 +33,17 @@ resource "azurerm_firewall" "lz1" {
   resource_group_name = azurerm_resource_group.lz1.name
   sku_name            = "AZFW_VNet"
   sku_tier            = "Standard"
+  firewall_policy_id  = azurerm_firewall_policy.lz1.id
+  private_ip_ranges                 = ["255.255.255.255/32"]
+  management_ip_configuration {
+    name = "lz1mgmtpip"
+    subnet_id = azurerm_subnet.lz1-azurefirewallmanagementsubnet.id
+    public_ip_address_id = azurerm_public_ip.lz1fwpip.id
+  }
 
   ip_configuration {
     name                 = "configuration"
     subnet_id            = azurerm_subnet.lz1-azurefirewallsubnet.id
-    public_ip_address_id = azurerm_public_ip.lz1fwpip.id
   }
 }
 
@@ -59,11 +66,17 @@ resource "azurerm_firewall" "lz2" {
   resource_group_name = azurerm_resource_group.lz2.name
   sku_name            = "AZFW_VNet"
   sku_tier            = "Standard"
+  firewall_policy_id  = azurerm_firewall_policy.lz2.id
+  private_ip_ranges                 = ["255.255.255.255/32"]
+  management_ip_configuration {
+    name = "lz2mgmtpip"
+    subnet_id = azurerm_subnet.lz2-azurefirewallmanagementsubnet.id
+    public_ip_address_id = azurerm_public_ip.lz2fwpip.id
+  }
 
   ip_configuration {
     name                 = "configuration"
     subnet_id            = azurerm_subnet.lz2-azurefirewallsubnet.id
-    public_ip_address_id = azurerm_public_ip.lz2fwpip.id
   }
 }
 
