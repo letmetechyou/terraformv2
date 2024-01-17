@@ -5,12 +5,6 @@ terraform {
       version = "=3.68.0"
     }
   }
-  # backend "azurerm" {
-  #   resource_group_name = "tfstate"
-  #   storage_account_name = "letmetechyou"
-  #   container_name = "tfstate"
-  #   key = "homelab.tfstate"
-  # }
 }
 
 # Configure the Microsoft Azure Provider
@@ -21,9 +15,8 @@ provider "azurerm" {
 # Configure Resource Group
 
 resource "azurerm_resource_group" "homelabrg" {
-  name     = "homelab-rg"
+  name = "homelab-rg"
   location = "centralus"
-  tags     = local.terratag_added_main
 }
 
 # create virtual network
@@ -34,15 +27,15 @@ resource "azurerm_virtual_network" "homelabvirtualnetwork" {
   resource_group_name = azurerm_resource_group.homelabrg.name
   address_space       = ["10.0.0.0/16"]
 
-  #   subnet {
-  #     name           = "rghomelabsubnet"
-  #     address_prefix = "10.0.1.0/24"
-  #     security_group = azurerm_network_security_group.homelabnsg.id
-  #   }
+#   subnet {
+#     name           = "rghomelabsubnet"
+#     address_prefix = "10.0.1.0/24"
+#     security_group = azurerm_network_security_group.homelabnsg.id
+#   }
 
-  tags = merge({
-    "environment" = "Production"
-  }, local.terratag_added_main)
+  tags = {
+    environment = "Production"
+  }
 }
 
 resource "azurerm_subnet" "homelabsubnet" {
@@ -76,7 +69,6 @@ resource "azurerm_network_security_group" "homelabnsg" {
     source_address_prefix      = "*" #<----- set this to your home ip
     destination_address_prefix = "*"
   }
-  tags = local.terratag_added_main
 }
 
 # create a network interface 
@@ -90,17 +82,15 @@ resource "azurerm_network_interface" "homelabnic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.homelabsubnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.homelabpip.id
+    public_ip_address_id = azurerm_public_ip.homelabpip.id
   }
-  tags = local.terratag_added_main
 }
 
 resource "azurerm_public_ip" "homelabpip" {
-  name                = "homelabpip"
+    name                = "homelabpip"
   resource_group_name = azurerm_resource_group.homelabrg.name
   location            = azurerm_resource_group.homelabrg.location
   allocation_method   = "Static"
-  tags                = local.terratag_added_main
 }
 
 
@@ -112,7 +102,7 @@ resource "azurerm_windows_virtual_machine" "homelabvm" {
   location            = azurerm_resource_group.homelabrg.location
   size                = "Standard_F2" #<----- make this whatever size you want to build
   admin_username      = "adminuser"
-  admin_password      = "Thebestccnaadmin@20"
+  admin_password      = ""
   network_interface_ids = [
     azurerm_network_interface.homelabnic.id,
   ]
@@ -128,11 +118,5 @@ resource "azurerm_windows_virtual_machine" "homelabvm" {
     sku       = "2016-Datacenter" #<----- change this to whatever os azure supports for windows
     version   = "latest"
   }
-  tags = local.terratag_added_main
-}
-
-
-locals {
-  terratag_added_main = {"Createdby"="Kevin","Dept"="IT","Environment"="Dev","Managedby"="Terraform"}
 }
 
